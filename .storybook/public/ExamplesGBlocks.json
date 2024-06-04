@@ -1,0 +1,38 @@
+{
+  "button": {
+    "root": [
+      {
+        "fileName": "block.json",
+        "content": "{\r\n\t\"$schema\": \"https://json.schemastore.org/block.json\",\r\n\t\"apiVersion\": 2,\r\n\t\"name\": \"storybook/button\",\r\n\t\"title\": \"Button\",\r\n\t\"icon\": \"money-alt\",\r\n\t\"category\": \"storybook\",\r\n\t\"attributes\": {\r\n\t\t\"text\": {\r\n\t\t\t\"type\": \"object\"\r\n\t\t}\r\n\t},\r\n\t\"editorScript\": \"file:index.js\",\r\n\t\"editorStyle\": \"file:index.css\",\r\n\t\"style\": \"file:style-index.css\",\r\n\t\"viewScript\": \"file:script.js\"\r\n}\r\n"
+      },
+      {
+        "fileName": "index.php",
+        "content": "<?php\r\n\r\nnamespace Storybook\\Blocks\\Button;\r\n\r\ndefined( 'ABSPATH' ) || exit;\r\n\r\n/**\r\n * Registers all block assets so that they can be enqueued through Gutenberg in\r\n * the corresponding context.\r\n *\r\n */\r\nfunction register_block() {\r\n\r\n\t// Register the block by passing the location of block.json to register_block_type.\r\n\tregister_block_type(\r\n\t\t__DIR__,\r\n\t\tarray(\r\n\t\t\t'render_callback' => __NAMESPACE__ . '\\\\render_block',\r\n\t\t)\r\n\t);\r\n}\r\n\r\nadd_action( 'init', __NAMESPACE__ . '\\\\register_block' );\r\n\r\nfunction render_block( $attributes, $content, $block ) {\r\n\tob_start(); ?>\r\n\r\n\t<Button>123</Button>\r\n\r\n <?php \t\r\n return ob_get_clean();\r\n}"
+      }
+    ],
+    "javascript": [
+      {
+        "fileName": "edit.js",
+        "content": "<div></div>;\r\n"
+      }
+    ],
+    "typescript": [
+      {
+        "fileName": "edit.tsx",
+        "content": "/**\r\n * React dependency\r\n */\r\nimport React, { ReactElement } from 'react';\r\n\r\n/**\r\n * WordPress dependencies\r\n */\r\nimport { Button as GButton } from '@wordpress/components';\r\n\r\n/**\r\n * Internal dependencies\r\n */\r\nimport type { ButtonProps } from './types';\r\n\r\n/** Primary UI component */\r\nconst Button = ({ label, ...props }: ButtonProps): ReactElement => {\r\n\treturn <GButton {...props}>{label ?? 'Label'}</GButton>;\r\n};\r\n\r\nexport default Button;\r\n"
+      },
+      {
+        "fileName": "index.ts",
+        "content": "/**\r\n * WordPress dependencies\r\n */\r\nimport { BlockConfiguration, registerBlockType } from '@wordpress/blocks';\r\n\r\n/**\r\n * Internal dependencies\r\n */\r\nimport json from '../block.json';\r\nimport edit from './edit';\r\nimport save from './save';\r\n\r\n// If you want use styles, it add them to the current directory\r\n// import './editor.scss';\r\n// import './style.scss';\r\n\r\n// Destructure the json file to get the name and settings for the block\r\nconst blockConfig = json as BlockConfiguration;\r\n\r\n// Ensure name is a string before calling registerBlockType\r\nif (typeof blockConfig.name === 'string') {\r\n\t// Register the block with proper typing for block configuration\r\n\tregisterBlockType(blockConfig.name, {\r\n\t\t...blockConfig,\r\n\t\tedit, // Object shorthand property - same as writing: edit: edit,\r\n\t\tsave, // Object shorthand property - same as writing: save: save,\r\n\t});\r\n} else {\r\n\tconsole.error('Block name is undefined or not a string');\r\n}\r\n"
+      },
+      {
+        "fileName": "save.ts",
+        "content": "/**\r\n * See https://wordpress.org/gutenberg/handbook/designers-developers/developers/block-api/block-edit-save/#save\r\n *\r\n * @return {null} Dynamic blocks do not save the HTML.\r\n */\r\n\r\nconst Save = () => null\r\n\r\nexport default Save\r\n"
+      },
+      {
+        "fileName": "types.ts",
+        "content": "export type ButtonProps = {\r\n\t/**\r\n\t * An accessible description for the button.\r\n\t */\r\n\tdescribedBy?: string;\r\n\t/**\r\n\t *  Whether the button is disabled. If true, this will force a button element to be rendered, even when an href is given.\r\n\t */\r\n\tdisabled?: boolean;\r\n\t/**\r\n\t * If provided, renders a instead of button.\r\n\t */\r\n\thref?: string;\r\n\t/**\r\n\t * If provided, renders an Icon component inside the button.\r\n\t */\r\n\t// icon: IconProps<unknown>['icon'];\r\n\t/**\r\n\t * If provided with `icon`, sets the position of icon relative to the `text`.\r\n\t *\r\n\t * @default 'left'\r\n\t */\r\n\ticonPosition?: 'left' | 'right';\r\n\t/**\r\n\t * If provided with icon, sets the icon size. Please refer to the Icon component for more details regarding the default value of its size prop.\r\n\t */\r\n\t// iconSize: IconProps<unknown>['size'];\r\n\t/**\r\n\t * Indicates activity while a action is being performed.\r\n\t */\r\n\tisBusy?: boolean;\r\n\t/**\r\n\t *  Renders a red text-based button style to indicate destructive behavior.\r\n\t */\r\n\tisDestructive?: boolean;\r\n\t/**\r\n\t * Deprecated: Renders a button with an anchor style. Use variant prop with link value instead.\r\n\t */\r\n\tisLink?: boolean;\r\n\t/**\r\n\t * Renders a pressed button style. If the native aria-pressed attribute is also set, it will take precedence.\r\n\t */\r\n\tisPressed?: boolean;\r\n\t/**\r\n\t * Deprecated: Renders a primary button style. Use variant prop with primary value instead.\r\n\t */\r\n\tisPrimary?: boolean;\r\n\t/**\r\n\t * Deprecated: Renders a default button style. Use variant prop with secondary value instead.\r\n\t */\r\n\tisSecondary?: boolean;\r\n\t/**\r\n\t * Decreases the size of the button. Deprecated in favor of the size prop. If both props are defined, the size prop will take precedence.\r\n\t */\r\n\tisSmall?: boolean;\r\n\t/**\r\n\t * Deprecated: Renders a text-based button style. Use variant prop with tertiary value instead.\r\n\t */\r\n\tisTertiary?: boolean;\r\n\t/**\r\n\t * Sets the aria-label of the component, if none is provided. Sets the Tooltip content if showTooltip is provided.\r\n\t */\r\n\tlabel?: string;\r\n\t/**\r\n\t * If provided with `showTooltip`, appends the Shortcut label to the tooltip content.\r\n\t * If an object is provided, it should contain `display` and `ariaLabel` keys.\r\n\t *\r\n\t */\r\n\tshortcut?: string | { display: string; ariaLabel: string };\r\n\t/**\r\n\t * If provided, renders a Tooltip component for the button.\r\n\t */\r\n\tshowTooltip?: boolean;\r\n\t/**\r\n\t * The size of the button.\r\n\t *\r\n\t * - `'default'`: For normal text-label buttons, unless it is a toggle button.\r\n\t * - `'compact'`: For toggle buttons, icon buttons, and buttons when used in context of either.\r\n\t * - `'small'`: For icon buttons associated with more advanced or auxiliary features.\r\n\t *\r\n\t * If the deprecated `isSmall` prop is also defined, this prop will take precedence.\r\n\t *\r\n\t * @default 'default'\r\n\t */\r\n\tsize?: 'default' | 'compact' | 'small';\r\n\t/**\r\n\t * If provided with href, sets the target attribute to the a.\r\n\t */\r\n\ttarget?: string;\r\n\t/**\r\n\t * If provided, displays the given text inside the button. If the button contains children elements, the text is displayed before them.\r\n\t */\r\n\ttext?: string;\r\n\t/**\r\n\t * If provided with show Tooltip, sets the position of the tooltip. Please refer to the Tooltip component for more details regarding the defaults.\r\n\t */\r\n\t// tooltipPosition: PopoverProps['position'];\r\n\t/**\r\n\t * Specifies the button's style.\r\n\t * The accepted values are:\r\n\t * 'primary' (the primary button styles)\r\n\t * 'secondary' (the default button styles)\r\n\t * 'tertiary' (the text-based button styles)\r\n\t * 'link' (the link button styles)\r\n\t */\r\n\tvariant?: 'primary' | 'secondary' | 'tertiary' | 'link';\r\n};\r\n"
+      }
+    ]
+  }
+}

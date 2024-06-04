@@ -1,0 +1,53 @@
+{
+	"name": "test",
+	"version": "1.0.0",
+	"description": "",
+	"scripts": {
+		"watch": "wp-scripts start --webpack-copy-php",
+		"build": "wp-scripts build --webpack-copy-php",
+		"sb": "storybook dev -p 6006",
+		"build-sb": "storybook build"
+	},
+	"keywords": [],
+	"author": "Artemev Alexandr",
+	"license": "ISC",
+	"dependencies": {
+		"@storybook/api": "^7.6.17",
+		"@wordpress/block-editor": "^13.0.0",
+		"@wordpress/scripts": "^26.10.0",
+		"react-select": "^5.8.0",
+		"react-syntax-highlighter": "^15.5.0"
+	},
+	"devDependencies": {
+		"@geometricpanda/storybook-addon-badges": "^2.0.2",
+		"@storybook/addon-actions": "^8.1.5",
+		"@storybook/addon-controls": "^8.1.5",
+		"@storybook/addon-docs": "^8.1.5",
+		"@storybook/addon-links": "^8.1.5",
+		"@storybook/addon-onboarding": "^8.1.5",
+		"@storybook/addon-toolbars": "^8.1.5",
+		"@storybook/addon-viewport": "^8.1.5",
+		"@storybook/addon-webpack5-compiler-swc": "^1.0.3",
+		"@storybook/addons": "^7.6.17",
+		"@storybook/blocks": "^8.1.5",
+		"@storybook/manager-api": "^8.1.5",
+		"@storybook/react": "^8.1.5",
+		"@storybook/react-webpack5": "^8.1.5",
+		"@storybook/test": "^8.1.5",
+		"@types/node": "^20.13.0",
+		"@types/react": "^18.3.3",
+		"@types/react-dom": "^18.3.0",
+		"@types/react-syntax-highlighter": "^15.5.13",
+		"@types/wordpress__block-editor": "^11.5.14",
+		"@types/wordpress__blocks": "^12.5.14",
+		"@wordpress/postcss-plugins-preset": "^5.0.0",
+		"i18next": "^23.11.5",
+		"react-i18next": "^14.1.2",
+		"storybook": "^8.1.5",
+		"storybook-dark-mode": "^4.0.1",
+		"storybook-source-link": "^4.0.1",
+		"typescript": "^5.4.5",
+		"webpack": "^5.91.0",
+		"webpack-cli": "^4.10.0"
+	}
+}

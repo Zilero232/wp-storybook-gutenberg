@@ -1,0 +1,16 @@
+{
+	"authors": [
+		{
+			"name": "Alexandr Artemev",
+			"email": "sasha.artemev.1002@mail.ru"
+		}
+	],
+	"require-dev": {
+		"wp-coding-standards/wpcs": "^3.0"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	}
+}

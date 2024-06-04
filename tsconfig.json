@@ -1,0 +1,37 @@
+{
+	"$schema": "https://json.schemastore.org/tsconfig.json",
+	"compilerOptions": {
+		"allowJs": false,
+		"allowSyntheticDefaultImports": true,
+		"jsx": "react",
+		"target": "esnext",
+		"module": "esnext",
+		"lib": ["DOM", "DOM.Iterable", "ESNext"],
+		"composite": true,
+		"isolatedModules": true,
+
+		/* Strict Type-Checking Options */
+		"strict": true,
+
+		/* Additional Checks */
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+
+		/* Module Resolution Options */
+		"moduleResolution": "node",
+
+		/* This needs to be false so our types are possible to consume without setting this */
+		"esModuleInterop": false,
+		"resolveJsonModule": true,
+
+		"outDir": "./build",
+		"baseUrl": "./",
+		"paths": {
+			"@shared/*": ["./src/shared/*"],
+			"@blocks/*": ["./src/blocks/*"]
+		}
+	},
+	"include": ["src", ".storybook"]
+}
