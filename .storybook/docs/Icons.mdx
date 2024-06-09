@@ -1,0 +1,27 @@
+import { IconsDisplay } from '@st/components/IconsDisplay';
+import { Meta } from '@storybook/blocks';
+import { Icon, check } from '@wordpress/icons';
+
+<Meta title='Docs/Icons' />
+
+## SVG Icons Usage
+
+The `@wordpress/icons` package provides SVG icons that can be used in WordPress projects. The `Icon` component allows you to include these icons in your application. You can import individual icons and use them directly.
+
+### Examples
+
+Using the `Icon` component with the `check` icon.
+
+```jsx
+import { Icon, check } from '@wordpress/icons';
+
+const MyIcon = () => (
+	<div>
+		<Icon icon={check} />
+	</div>
+);
+```
+
+# WordPress Icons
+
+<IconsDisplay />;

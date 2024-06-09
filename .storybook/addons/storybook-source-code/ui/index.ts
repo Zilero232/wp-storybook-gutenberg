@@ -1,4 +1,4 @@
-export { CodeViewer } from './codeViewer/codeViewer.tsx';
-export { Select } from './select/Select.tsx';
-export { SyntaxHighlighter } from './syntaxHighlighter/syntaxHighlighter.tsx';
-export { Tabs } from './tabs/tabs.tsx';
+export { CodeViewer } from './codeViewer/codeViewer';
+export { Select } from './reactSelect/select';
+export { SyntaxHighlighter } from './syntaxHighlighter/syntaxHighlighter';
+export { Tabs } from './tabs/tabs';

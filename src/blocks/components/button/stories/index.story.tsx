@@ -1,8 +1,4 @@
 /**
- * React dependencies
- */
-
-/**
  * External dependencies
  */
 import { Story } from '@storybook/blocks';
@@ -16,17 +12,6 @@ import Button from '../typescript/edit';
 const meta = {
 	title: 'Components/Button',
 	component: Button,
-	parameters: {
-		controls: { expanded: true },
-		preview: [
-			{
-				tab: 'Vanilla',
-				template: Button,
-				language: 'tsx',
-				copy: true,
-			},
-		],
-	},
 } satisfies Meta<typeof Button>;
 
 export default meta;

@@ -1,19 +1,20 @@
 /**
  * React dependencies
  */
-import React from 'react';
 
 /**
  * External dependencies
  */
-import { Canvas, Controls, Description, Title } from '@storybook/blocks';
 import type { Preview } from '@storybook/react';
 
 /**
  * Internal dependencies
  */
+import { Canvas, Controls, Description, Title } from '@storybook/blocks';
+import React from 'react';
 import badgesConfig from './badges';
-import { useStyles } from './decorators/useStyles';
+import { withStyles } from './decorators';
+import { darkTheme, lightTheme } from './themes';
 
 interface IPreview extends Preview {
 	parameters: {
@@ -22,7 +23,7 @@ interface IPreview extends Preview {
 }
 
 // Register global decorators
-export const decorators = [useStyles];
+export const decorators = [withStyles];
 
 const globalTypes = {
 	locale: {
@@ -37,12 +38,32 @@ const globalTypes = {
 			],
 		},
 	},
+	// theme: {
+	// 	description: 'Global color scheme for components.',
+	// 	defaultValue: 'light',
+	// 	toolbar: {
+	// 		title: 'Color Scheme',
+	// 		icon: 'mirror',
+	// 		items: [
+	// 			{ value: 'light', title: 'Light Mode' },
+	// 			{ value: 'dark', title: 'Dark Mode' },
+	// 		],
+	// 		dynamicTitle: true,
+	// 	},
+	// },
 };
 
 const parameters = {
+	darkMode: {
+		current: 'light',
+		// Override the default dark theme
+		dark: darkTheme,
+		// Override the default light theme
+		light: lightTheme,
+	},
 	options: {
 		storySort: {
-			order: ['Components'],
+			order: ['Docs', ['Introduction', 'Icons'], 'Components'],
 		},
 	},
 	docs: {
@@ -67,6 +88,7 @@ const preview: IPreview = {
 	globalTypes,
 	parameters,
 	decorators,
+	tags: ['autodocs'],
 };
 
 export default preview;

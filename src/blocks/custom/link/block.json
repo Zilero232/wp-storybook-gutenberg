@@ -1,0 +1,31 @@
+{
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"name": "storybook/custom-link",
+	"title": "Custom Link",
+	"icon": "admin-links",
+	"category": "storybook",
+	"attributes": {
+		"link": {
+			"type": "object",
+			"default": {
+				"url": "",
+				"title": "",
+				"type": "URL",
+				"opensInNewTab": false
+			}
+		},
+		"text": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"customClassName": true,
+		"multiple": true
+	},
+	"editorScript": "file:index.js",
+	"editorStyle": "file:index.css",
+	"style": "file:style-index.css",
+	"viewScript": "file:script.js"
+}

@@ -29,9 +29,10 @@
 		"outDir": "./build",
 		"baseUrl": "./",
 		"paths": {
+			"@st/*": ["./.storybook/*"],
 			"@shared/*": ["./src/shared/*"],
 			"@blocks/*": ["./src/blocks/*"]
 		}
 	},
-	"include": ["src", ".storybook"]
+	"include": ["src/**/*", ".storybook/**/*", "**/*.json"]
 }

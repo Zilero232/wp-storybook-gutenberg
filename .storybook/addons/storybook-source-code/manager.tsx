@@ -6,20 +6,27 @@ import React from 'react';
 /**
  * External dependencies
  */
+import { AddonPanel } from '@storybook/components';
 import { addons, types } from '@storybook/manager-api';
-import CodeViewer from './ui/codeViewer';
 
 /**
  * Internal dependencies
  */
-import { ADDON_ID, PANEL_ID, PARAM_KEY } from '../../constants';
+import { ADDON_ID, PANEL_ID } from '../../constants';
+import { StateProvider } from './providers/stateContext';
+import { CodeViewer } from './ui';
 
-// Регистрация аддона
+// Register custom addon
 addons.register(ADDON_ID, () => {
 	addons.add(PANEL_ID, {
 		title: 'Source Code',
 		type: types.PANEL,
-		render: ({ active }) => <CodeViewer active={!!active} />,
-		paramKey: PARAM_KEY,
+		render: ({ active }) => (
+			<AddonPanel active={active ?? false}>
+				<StateProvider>
+					<CodeViewer />
+				</StateProvider>
+			</AddonPanel>
+		),
 	});
 });

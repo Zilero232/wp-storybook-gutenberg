@@ -7,7 +7,8 @@ import path from 'path';
 /**
  * Internal dependencies
  */
-import { FILE_NAME_JSON } from '../../constants';
+import { TABS } from '@st/addons/storybook-source-code/types';
+import { FILE_NAME_JSON } from '@st/constants';
 
 interface FileJSON {
 	fileName: string;
@@ -55,7 +56,7 @@ const addFilesToJson = (json: DirectoryJSON, directoryName: string, type: string
 
 // Function to generate file.json with examples Gutenberg block
 export const generateFileExample = () => {
-	const blocksDirectory = path.join(__dirname, '../../../src/blocks/components');
+	const blocksDirectory = path.join(__dirname, '../lib/../../../src/blocks/components');
 	const directories = getDirectories(blocksDirectory);
 
 	if (!directories) {
@@ -87,7 +88,7 @@ export const generateFileExample = () => {
 		}
 
 		// Define directories to be added to JSON
-		const directoriesToAdd = ['javascript', 'typescript'];
+		const directoriesToAdd = [TABS.JAVASCRIPT, TABS.TYPESCRIPT];
 
 		// Add directories to JSON
 		directoriesToAdd.forEach(type => {

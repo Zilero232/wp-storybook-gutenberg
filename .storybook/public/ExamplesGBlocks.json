@@ -19,7 +19,7 @@
     "typescript": [
       {
         "fileName": "edit.tsx",
-        "content": "/**\r\n * React dependency\r\n */\r\nimport React, { ReactElement } from 'react';\r\n\r\n/**\r\n * WordPress dependencies\r\n */\r\nimport { Button as GButton } from '@wordpress/components';\r\n\r\n/**\r\n * Internal dependencies\r\n */\r\nimport type { ButtonProps } from './types';\r\n\r\n/** Primary UI component */\r\nconst Button = ({ label, ...props }: ButtonProps): ReactElement => {\r\n\treturn <GButton {...props}>{label ?? 'Label'}</GButton>;\r\n};\r\n\r\nexport default Button;\r\n"
+        "content": "/**\r\n * React dependency\r\n */\r\nimport React, { ReactElement } from 'react';\r\n\r\n/**\r\n * WordPress dependencies\r\n */\r\nimport { Button as GButton } from '@wordpress/components';\r\nimport { ButtonProps } from './types';\r\n\r\n/**\r\n * Internal dependencies\r\n */\r\n\r\n/** Primary UI component */\r\nconst Button = ({ label, ...props }: ButtonProps): ReactElement => {\r\n\treturn <GButton {...props}>{label ?? 'Label'}</GButton>;\r\n};\r\n\r\nexport default Button;\r\n"
       },
       {
         "fileName": "index.ts",

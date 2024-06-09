@@ -1,52 +1,60 @@
 /**
  * React dependency
  */
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 /**
  * External dependencies
  */
-import { Loader } from '@storybook/components';
+import { Button } from '@storybook/components';
 import SyntaxLighter from 'react-syntax-highlighter/dist/esm/prism';
 import { coldarkCold } from 'react-syntax-highlighter/dist/esm/styles/prism';
+
+/**
+ * Internal dependencies
+ */
+import { InlineIcon } from '../../../../components/inlineIcon';
+import { ToastContainer } from '../../../../components/toastContainer';
+import { useCopyToClipboard } from '../../../../hooks/useCopyToClipboard';
+import { useStateContext } from '../../hooks/useStateContext';
 import { getFileExtension } from '../../utils/helpers';
 
-interface Props {
-	selectedFileName: string;
-	files: any;
-}
+export const SyntaxHighlighter = () => {
+	const { files, selectedFileName } = useStateContext();
 
-const getExtension = (selectedFileName: string): string => {
-	if (!selectedFileName) {
-		return 'tsx';
-	}
-
-	return getFileExtension(selectedFileName);
-};
-
-export const SyntaxHighlighter = ({ selectedFileName, files }: Props) => {
 	const [codeContent, setCodeContent] = useState<string>('');
+	const [isCopied, copyToClipboard] = useCopyToClipboard();
 
-	// Dynamic import for the file json
+	// Change code content
 	useEffect(() => {
-		if (!selectedFileName) {
-			return;
-		}
-
 		const selectedFile = files.find(({ fileName }) => fileName === selectedFileName);
 
-		if (selectedFile) {
-			setCodeContent(selectedFile.content);
-		} else {
-			setCodeContent('File not found.');
-		}
-	}, [selectedFileName]);
+		setCodeContent(selectedFile?.content ?? '');
+	}, [selectedFileName, files]);
 
 	return (
-		<Suspense fallback={<Loader />}>
-			<SyntaxLighter language={getExtension(selectedFileName)} style={coldarkCold}>
-				{codeContent || 'No code to display.'}
-			</SyntaxLighter>
-		</Suspense>
+		<>
+			<ToastContainer />
+
+			<div style={{ position: 'relative' }}>
+				{codeContent && (
+					<Button
+						variant='solid'
+						style={{ position: 'absolute', top: 2, right: 2 }}
+						onClick={() => copyToClipboard({ text: codeContent, message: 'The code has been copied to the buffer!' })}
+					>
+						<InlineIcon icon='copy' /> Copy
+					</Button>
+				)}
+				<SyntaxLighter
+					language={selectedFileName ? getFileExtension(selectedFileName) : 'tsx'}
+					style={coldarkCold}
+					lineProps={{ style: { wordBreak: 'break-all', whiteSpace: 'pre-wrap' } }}
+					wrapLines={true}
+				>
+					{codeContent || 'No code to display.'}
+				</SyntaxLighter>
+			</div>
+		</>
 	);
 };

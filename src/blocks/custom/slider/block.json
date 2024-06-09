@@ -1,0 +1,36 @@
+{
+	"apiVersion": 2,
+	"name": "storybook/hero-slider",
+	"title": "Slider",
+	"icon": "slides",
+	"category": "storybook",
+	"attributes": {
+		"autoplay": {
+			"type": "boolean",
+			"default": true
+		},
+		"slides": {
+			"type": "array",
+			"default": []
+		},
+		"slidesMaxItems": {
+			"type": "number",
+			"default": 4
+		},
+		"updateTime": {
+			"type": "number",
+			"default": 0
+		},
+		"cover": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"multiple": true
+	},
+	"editorScript": "file:index.js",
+	"editorStyle": "file:index.css",
+	"style": "file:style-index.css",
+	"viewScript": "file:script.js"
+}

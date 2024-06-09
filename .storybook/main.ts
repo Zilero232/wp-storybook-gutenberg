@@ -12,11 +12,19 @@ const config: StorybookConfig = {
 	core: {
 		disableTelemetry: true,
 	},
-	stories: ['../src/**/**/stories/*.story.@(ts|tsx|mdx)'],
+
+	stories: ['./docs/*.mdx', '../src/**/**/stories/*.story.@(ts|tsx|mdx)'],
+
 	addons: [
 		{
 			name: '@storybook/addon-docs',
 			options: { configureJSX: true },
+		},
+		{
+			name: 'storybook-addon-turbo-build',
+			options: {
+				optimizationLevel: 2,
+			},
 		},
 		'@storybook/addon-webpack5-compiler-swc',
 		'@storybook/addon-viewport',
@@ -26,17 +34,23 @@ const config: StorybookConfig = {
 		'@storybook/addon-toolbars',
 		'@storybook/addons',
 		'@geometricpanda/storybook-addon-badges',
-		// 'storybook-dark-mode',
+		'@storybook/addon-mdx-gfm',
+		'storybook-dark-mode',
 		'storybook-source-link',
 		'./addons/storybook-source-code', // custom addons
 	],
+
 	framework: {
 		name: '@storybook/react-webpack5',
-		options: {},
+		options: {
+			fastRefresh: true,
+			strictMode: true,
+			builder: {
+				fsCache: true,
+			},
+		},
 	},
-	docs: {
-		autodocs: true,
-	},
+
 	webpackFinal,
 };
 

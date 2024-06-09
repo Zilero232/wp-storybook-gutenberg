@@ -1,18 +1,19 @@
 /**
  * React dependency
  */
-import React from 'react';
+import React, { useEffect } from 'react';
 
 /**
  * External dependencies
  */
-import { Tabs as TableStorybook } from '@storybook/components';
+import { Tabs as TabsStorybook } from '@storybook/components';
 
 /**
  * Internal dependencies
  */
+import { Select } from '../';
+import { useStateContext } from '../../hooks/useStateContext';
 import { TABS, TabValues } from '../../types';
-import { Select } from '../select/Select';
 
 const tabs = [
 	{
@@ -25,28 +26,27 @@ const tabs = [
 	},
 ];
 
-interface Props {
-	selectedTab: TabValues;
-	setSelectedTab: any;
-	selectedFileName: string;
-	setSelectedFileName: any;
-	directories: any;
-}
+export const Tabs = () => {
+	const { setSelectedFileName, selectedTab, setSelectedTab } = useStateContext();
 
-export const Tabs = ({ selectedTab, setSelectedTab, selectedFileName, setSelectedFileName, directories }: Props) => {
+	// Reset selected file
+	useEffect(() => {
+		setSelectedFileName('');
+	}, [selectedTab]);
+
 	return (
-		<TableStorybook
+		<TabsStorybook
 			selected={selectedTab}
 			backgroundColor='white'
 			actions={{
-				onSelect: setSelectedTab,
+				onSelect: tab => setSelectedTab(tab as TabValues),
 			}}
 		>
 			{tabs.map(({ title, tab }) => (
 				<div key={tab} id={tab} title={title}>
-					<Select selected={selectedFileName} files={directories[tab]} handleChange={setSelectedFileName} />
+					<Select />
 				</div>
 			))}
-		</TableStorybook>
+		</TabsStorybook>
 	);
 };

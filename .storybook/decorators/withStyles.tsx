@@ -11,9 +11,9 @@ import { Decorator } from '@storybook/react';
 /**
  * Internal dependencies
  */
-import CONFIG, { Style } from '../styles/config';
+import CONFIG, { Style } from '../public/styles/config';
 
-export const useStyles: Decorator = (Story, context) => {
+export const withStyles: Decorator = (Story, context) => {
 	useLayoutEffect(() => {
 		const stylesToUse: Style[] = [];
 
@@ -30,9 +30,5 @@ export const useStyles: Decorator = (Story, context) => {
 		};
 	}, [context.componentId]);
 
-	return (
-		<div>
-			<Story {...context} />
-		</div>
-	);
+	return <Story {...context} />;
 };

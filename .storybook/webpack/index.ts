@@ -10,11 +10,18 @@ import { Configuration } from 'webpack';
 import { generateFileExample } from './lib/generateFileExample';
 import { scssLoaders } from './lib/scssLoaders';
 
-const webpackFinal = (config: Configuration) => {
+const webpackFinal = (config: Configuration): Configuration => {
 	generateFileExample();
 
 	return {
 		...config,
+		resolve: {
+			...config.resolve,
+			alias: {
+				...config?.resolve?.alias,
+				'@st': path.resolve(__dirname, '../'),
+			},
+		},
 		module: {
 			...config.module,
 			rules: [
@@ -23,12 +30,12 @@ const webpackFinal = (config: Configuration) => {
 					test: /\.scss$/,
 					exclude: /\.lazy\.scss$/,
 					use: scssLoaders({ isLazy: false }),
-					include: path.resolve(__dirname, '../styles'),
+					include: path.resolve(__dirname, '../public/styles'),
 				},
 				{
 					test: /\.lazy\.scss$/,
 					use: scssLoaders({ isLazy: true }),
-					include: path.resolve(__dirname, '../styles'),
+					include: path.resolve(__dirname, '../public/styles'),
 				},
 			],
 		},

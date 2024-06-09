@@ -1,108 +1,80 @@
 /**
  * React dependency
  */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 /**
  * External dependencies
  */
 import { useStorybookState } from '@storybook/api';
-import { AddonPanel } from '@storybook/components';
 
 /**
  * Internal dependencies
  */
 import { SyntaxHighlighter, Tabs } from '../';
-import { TABS, TabValues } from '../../types';
+import { useStateContext } from '../../hooks/useStateContext';
+import { TABS } from '../../types';
 import { extractComponentName } from '../../utils/helpers';
 
-interface File {
-	fileName: string;
-	content: string;
-}
-
-interface ComponentDirectories {
-	root: File[];
-	javascript: File[];
-	typescript: File[];
-}
-
-const initialState = { root: [], javascript: [], typescript: [] };
-
-export const CodeViewer = ({ active }: { active: boolean }) => {
-	const state = useStorybookState();
-
-	const [jsonFile, setFileJson] = useState<Record<string, ComponentDirectories> | null>(null);
-
-	const [directories, setDirectories] = useState<ComponentDirectories>(initialState);
-	const [selectedFileName, setSelectedFileName] = useState<string>('');
-
-	const [selectedTab, setSelectedTab] = useState<TabValues>(TABS.JAVASCRIPT);
+export const CodeViewer = () => {
+	const { storyId } = useStorybookState();
+	const { jsonFile, setJsonFile, initialDirectoriesState, setDirectories, setSelectedFileName } = useStateContext();
 
 	// Dynamic import for the file json
 	useEffect(() => {
 		const loadFileJson = async () => {
 			try {
+				// @ts-ignore
 				const fileList = await import('../../../../public/ExamplesGBlocks.json');
 
-				setFileJson(fileList.default || fileList);
+				setJsonFile(fileList.default || fileList);
 			} catch (error) {
-				console.error('Error loading file list:', error);
+				console.error('Error loading file json:', error);
 
-				setFileJson(null);
+				setJsonFile(null);
 			}
 		};
 
 		loadFileJson();
 	}, []);
 
-	// Dynamic import for the file json
+	// Get directories from the component
 	useEffect(() => {
-		if (!jsonFile) {
-			return;
-		}
-
-		if (state?.storyId) {
-			const componentName = extractComponentName(state.storyId);
+		if (jsonFile && storyId) {
+			const componentName = extractComponentName(storyId);
 
 			if (componentName) {
 				const directories = jsonFile[componentName];
 
-				if (directories && typeof directories === 'object') {
+				if (directories) {
+					const root = directories['root'] || [];
 					// Set the directories to state
 					setDirectories({
-						root: directories['root'] || [],
-						javascript: directories['javascript'] || [],
-						typescript: directories['typescript'] || [],
+						[TABS.JAVASCRIPT]: [...root, ...(directories[TABS.JAVASCRIPT] || [])],
+						[TABS.TYPESCRIPT]: [...root, ...(directories[TABS.TYPESCRIPT] || [])],
 					});
 				} else {
 					console.error('Invalid file list for component:', componentName);
 
-					setDirectories(initialState);
+					setDirectories(initialDirectoriesState);
 				}
 
 				setSelectedFileName(''); // Reset selected file when component changes
 			}
 		}
-	}, [state?.storyId, jsonFile]);
+	}, [jsonFile, storyId]);
 
 	return (
-		<AddonPanel active={active}>
+		<div style={{ padding: '5px 10px' }}>
 			{!jsonFile ? (
-				<p>File list not found. Please ensure the file exists.</p>
+				<p>File json not found. Please ensure the file exists.</p>
 			) : (
 				<>
-					<Tabs
-						selectedTab={selectedTab}
-						setSelectedTab={setSelectedTab}
-						selectedFileName={selectedFileName}
-						setSelectedFileName={setSelectedFileName}
-						directories={directories}
-					/>
+					<Tabs />
 
-					<SyntaxHighlighter selectedFileName={selectedFileName} files={directories[selectedTab]} />
+					<SyntaxHighlighter />
 				</>
 			)}
-		</AddonPanel>
+		</div>
 	);
 };
