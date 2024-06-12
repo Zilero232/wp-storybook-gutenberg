@@ -1,7 +1,7 @@
 /**
  * React dependency
  */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 /**
  * External dependencies
@@ -13,12 +13,14 @@ import { useStorybookState } from '@storybook/api';
  */
 import { SyntaxHighlighter, Tabs } from '../';
 import { useStateContext } from '../../hooks/useStateContext';
-import { TABS } from '../../types';
+import { ComponentDirectories, TABS } from '../../types';
 import { extractComponentName } from '../../utils/helpers';
 
 export const CodeViewer = () => {
 	const { storyId } = useStorybookState();
-	const { jsonFile, setJsonFile, initialDirectoriesState, setDirectories, setSelectedFileName } = useStateContext();
+
+	const [jsonFile, setJsonFile] = useState<Record<string, ComponentDirectories> | null>(null);
+	const { initialDirectoriesState, setDirectories, setSelectedFileName } = useStateContext();
 
 	// Dynamic import for the file json
 	useEffect(() => {

@@ -7,15 +7,19 @@ import type { Meta, StoryObj } from '@storybook/react';
 /**
  * Internal dependencies
  */
-import CustomLink from './template';
+import Toolbar from '../edit';
 
 const meta = {
-	title: 'Custom/Custom Link',
-	component: CustomLink,
-} satisfies Meta<typeof CustomLink>;
+	title: 'Components/Toolbar',
+	component: Toolbar,
+} satisfies Meta<typeof Toolbar>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default = {} satisfies Story;
+export const Default = {
+	args: {
+		label: 'Toolbar',
+	},
+} satisfies Story;

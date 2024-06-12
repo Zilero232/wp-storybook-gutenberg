@@ -7,12 +7,12 @@ import type { Meta, StoryObj } from '@storybook/react';
 /**
  * Internal dependencies
  */
-import CustomLink from './template';
+import Select from '../edit';
 
 const meta = {
-	title: 'Custom/Custom Link',
-	component: CustomLink,
-} satisfies Meta<typeof CustomLink>;
+	title: 'Custom/MultiSelectDrag',
+	component: Select,
+} satisfies Meta<typeof Select>;
 
 export default meta;
 

@@ -1,7 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 
 interface State {
-	jsonFile: Record<string, ComponentDirectories> | null;
 	initialDirectoriesState: ComponentDirectories;
 	directories: ComponentDirectories;
 	selectedFileName: string;
@@ -10,7 +9,6 @@ interface State {
 }
 
 export interface StateContextProps extends State {
-	setJsonFile: Dispatch<SetStateAction<Record<string, ComponentDirectories> | null>>;
 	setDirectories: Dispatch<SetStateAction<ComponentDirectories>>;
 	setSelectedFileName: Dispatch<SetStateAction<string>>;
 	setSelectedTab: Dispatch<SetStateAction<TabValues>>;

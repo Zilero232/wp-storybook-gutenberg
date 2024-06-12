@@ -10,10 +10,12 @@
 /**
  * Internal dependencies
  */
-// @ts-ignore
-import global from './global.lazy.scss';
-// @ts-ignore
+
+// @ts-ignore-start
+import blockEditor from './block-editor.lazy.scss';
+import blockLibrary from './block-library.lazy.scss';
 import components from './components.lazy.scss';
+// @ts-ignore-end
 
 export type Style = {
 	use: () => void;
@@ -22,13 +24,21 @@ export type Style = {
 
 export interface StyleItem {
 	componentIdMatcher: RegExp;
-	styles: Style[];
+	style: Style;
 }
 
 const CONFIG: StyleItem[] = [
 	{
+		componentIdMatcher: /^playground-/,
+		style: blockLibrary,
+	},
+	{
 		componentIdMatcher: /^components-/,
-		styles: [global, components],
+		style: components,
+	},
+	{
+		componentIdMatcher: /^block-editor-/,
+		style: blockEditor,
 	},
 ];
 

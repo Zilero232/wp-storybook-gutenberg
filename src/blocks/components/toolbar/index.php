@@ -1,6 +1,6 @@
 <?php
 
-namespace Storybook\Blocks\CustomLink;
+namespace Storybook\Blocks\Toolbar;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -21,29 +21,9 @@ function register_block() {
 add_action( 'init', __NAMESPACE__ . '\\register_block' );
 
 function render_block( $attributes ) {
-	$text     = $attributes['text'] ?? '';
-	$url_date = $attributes['link'] ?? [];
-
 	ob_start();
 	?>
-	<p>
-		<?php
-		if ( $text ) :
-			$url    = $url_date['url'] ?? '';
-			$target = $url_date['opensInNewTab'] ?? false;
 
-			get_template_part(
-				'button',
-				null,
-				[
-					'href'   => ! empty( $url ) ? $url : '/',
-					'target' => $target,
-					'markup' => $text,
-				]
-			);
-		endif;
-		?>
-	</p>
 	<?php
 	return ob_get_clean();
 }

@@ -1,17 +1,17 @@
 /**
  * React dependencies
  */
+import React from 'react';
 
 /**
  * External dependencies
  */
+import { Canvas, Controls, Description, Title } from '@storybook/blocks';
 import type { Preview } from '@storybook/react';
 
 /**
  * Internal dependencies
  */
-import { Canvas, Controls, Description, Title } from '@storybook/blocks';
-import React from 'react';
 import badgesConfig from './badges';
 import { withStyles } from './decorators';
 import { darkTheme, lightTheme } from './themes';

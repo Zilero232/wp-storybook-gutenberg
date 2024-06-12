@@ -17,7 +17,7 @@
 		},
 		"text": {
 			"type": "string",
-			"default": ""
+			"default": "Click here"
 		}
 	},
 	"supports": {

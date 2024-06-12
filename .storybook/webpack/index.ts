@@ -7,11 +7,11 @@ import { Configuration } from 'webpack';
 /**
  * Internal dependencies
  */
-import { generateFileExample } from './lib/generateFileExample';
+import generateFileExample from './lib/generateFileExample';
 import { scssLoaders } from './lib/scssLoaders';
 
-const webpackFinal = (config: Configuration): Configuration => {
-	generateFileExample();
+const webpackFinal = async (config: Configuration): Promise<Configuration> => {
+	await generateFileExample();
 
 	return {
 		...config,
