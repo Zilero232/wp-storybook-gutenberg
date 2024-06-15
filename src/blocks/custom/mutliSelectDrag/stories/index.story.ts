@@ -10,7 +10,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Select from '../edit';
 
 const meta = {
-	title: 'Custom/MultiSelectDrag',
+	title: 'Custom/SelectDrag',
 	component: Select,
 } satisfies Meta<typeof Select>;
 

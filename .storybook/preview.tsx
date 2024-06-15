@@ -6,7 +6,7 @@ import React from 'react';
 /**
  * External dependencies
  */
-import { Canvas, Controls, Description, Title } from '@storybook/blocks';
+import { Controls, Description, Story, Title } from '@storybook/blocks';
 import type { Preview } from '@storybook/react';
 
 /**
@@ -74,7 +74,7 @@ const parameters = {
 				<Title />
 				<Description />
 
-				<Canvas />
+				<Story />
 				<Controls />
 			</>
 		),

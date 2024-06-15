@@ -9,14 +9,14 @@ import React, { useState } from 'react';
 import { closestCenter, DndContext, DragEndEvent, KeyboardSensor, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import Select, { components, MultiValueProps, StylesConfig } from 'react-select';
+import Select, { components } from 'react-select';
 
 /**
  * Internal dependencies
  */
-import { MultiSelectDragProps, OptionType } from './types';
+import { CustomStyles, Option, SelectProps, SortableMultiValueLabelProps, SortableMultiValueProps } from './types';
 
-const customStyles: StylesConfig<OptionType, true> = {
+const customStyles: CustomStyles = {
 	multiValue: provided => ({
 		...provided,
 		justifyContent: 'space-between',
@@ -34,24 +34,14 @@ const customStyles: StylesConfig<OptionType, true> = {
 		...provided,
 		opacity: state.isDisabled ? '0.4' : '1',
 	}),
-	button: provided => ({
-		...provided,
-		width: '100%',
-	}),
 };
 
-const options: OptionType[] = [
-	{
-		label: 'Option1',
-		value: 'Option1',
-	},
-	{
-		label: 'Option2',
-		value: 'Option2',
-	},
-];
+const options: Option[] = Array.from({ length: 10 }, (_, index) => ({
+	label: `option-${index}`,
+	value: `option-${index}`,
+}));
 
-const SortableMultiValueLabel: MultiValueProps<OptionType> = props => {
+const SortableMultiValueLabel = (props: SortableMultiValueLabelProps) => {
 	const { attributes, listeners } = useSortable({ id: props.data.value });
 
 	return (
@@ -61,13 +51,14 @@ const SortableMultiValueLabel: MultiValueProps<OptionType> = props => {
 	);
 };
 
-const SortableMultiValue: MultiValueProps<OptionType> = props => {
+const SortableMultiValue = (props: SortableMultiValueProps) => {
 	const { setNodeRef, transform, transition } = useSortable({
 		id: props.data.value,
 	});
 
 	const style = {
-		width: '40%',
+		display: 'flex',
+		alignItems: 'center',
 		transform: CSS.Transform.toString(transform),
 		transition,
 	};
@@ -79,13 +70,8 @@ const SortableMultiValue: MultiValueProps<OptionType> = props => {
 	);
 };
 
-const MultiSelectDrag = ({
-	isDisabled = false,
-	isLoading = false,
-	isOptionDisabled = () => false,
-	placeholder = 'Select...',
-}: MultiSelectDragProps) => {
-	const [selected, setSelected] = useState<OptionType[]>([]);
+const SelectDrag = ({ ...props }: SelectProps) => {
+	const [selected, setSelected] = useState<Option[]>(options);
 
 	const handleDragEnd = ({ active, over }: DragEndEvent) => {
 		if (active.id !== over?.id) {
@@ -107,11 +93,10 @@ const MultiSelectDrag = ({
 		<DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
 			<SortableContext items={selected.map(s => s.value)} strategy={verticalListSortingStrategy}>
 				<Select
-					isMulti
-					placeholder={placeholder}
+					{...props}
 					options={options}
 					value={selected}
-					onChange={selectedOptions => setSelected(selectedOptions as OptionType[])}
+					onChange={selectedOptions => setSelected(selectedOptions as Option[])}
 					components={{
 						MultiValue: SortableMultiValue,
 						MultiValueLabel: SortableMultiValueLabel,
@@ -129,14 +114,10 @@ const MultiSelectDrag = ({
 					styles={{
 						...customStyles,
 					}}
-					isLoading={isLoading}
-					isDisabled={isDisabled}
-					isOptionDisabled={isOptionDisabled}
-					closeMenuOnSelect={false}
 				/>
 			</SortableContext>
 		</DndContext>
 	);
 };
 
-export default MultiSelectDrag;
+export default SelectDrag;
