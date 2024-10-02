@@ -20,7 +20,11 @@ export const withStyles: Decorator = (Story, context) => {
 	useLayoutEffect(() => {
 		const stylesToUse: Style[] = [GlobalWordpressStyle];
 
-		const elementsClasses = new Set([...canvasElement.getElementsByTagName('*')].filter(el => el.className).map(el => el.className));
+		const elementsClasses = new Set(
+			[...canvasElement.getElementsByTagName('*')]
+				.filter(el => el.className)
+				.map(el => el.className),
+		);
 
 		if (!elementsClasses) {
 			return;

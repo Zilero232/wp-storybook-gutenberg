@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <ruleset name="WordPress">
-    <description>Sniffs for the coding standards of the WordPress theme/plugin. Based on WordPress-Extra.</description>
+    <description>Sniffs for the coding standards of the WordPress. Based on WordPress-Extra.</description>
 
     <config name="installed_paths" value="vendor/wp-coding-standards/wpcs" />
 

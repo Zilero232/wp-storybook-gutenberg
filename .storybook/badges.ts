@@ -42,6 +42,14 @@ const badgesConfig: BadgesConfig = {
 			desc: 'This component is not ready for use in production, including the Gutenberg codebase. DO NOT export outside of @wordpress/components.',
 		},
 	},
+	SOLUTION: {
+		title: '🚧 Temporary Solution',
+		styles: { backgroundColor: '#FFF0BD' },
+		tooltip: {
+			title: 'A temporary solution before finding a better one',
+			desc: 'This component can be used in real projects, but this solution is not the best, if you know the solution better, you can write to me.',
+		},
+	},
 };
 
 export default badgesConfig;

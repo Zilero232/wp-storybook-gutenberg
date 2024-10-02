@@ -11,6 +11,7 @@ import generateFileExample from './lib/generateFileExample';
 import { scssLoaders } from './lib/scssLoaders';
 
 const webpackFinal = async (config: Configuration): Promise<Configuration> => {
+	// Generating a JSON file with typescript/javascript code for viewing in the "Source Code" addon
 	await generateFileExample();
 
 	return {

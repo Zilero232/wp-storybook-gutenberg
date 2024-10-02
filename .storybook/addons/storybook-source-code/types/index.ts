@@ -1,18 +1,16 @@
 import { Dispatch, SetStateAction } from 'react';
 
-interface State {
-	initialDirectoriesState: ComponentDirectories;
+export interface StateContextProps {
 	directories: ComponentDirectories;
+	setDirectories: Dispatch<SetStateAction<ComponentDirectories>>;
 	selectedFileName: string;
+	setSelectedFileName: Dispatch<SetStateAction<string>>;
 	selectedTab: TabValues;
+	setSelectedTab: Dispatch<SetStateAction<TabValues>>;
 	files: File[];
 }
 
-export interface StateContextProps extends State {
-	setDirectories: Dispatch<SetStateAction<ComponentDirectories>>;
-	setSelectedFileName: Dispatch<SetStateAction<string>>;
-	setSelectedTab: Dispatch<SetStateAction<TabValues>>;
-}
+export type JsonFile = Record<string, ComponentDirectories> | null;
 
 // Enum for representing tab types: JavaScript and TypeScript
 export enum TABS {

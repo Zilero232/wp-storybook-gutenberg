@@ -1,0 +1,329 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "storybook/swiper-slider",
+	"title": "Swiper Slider",
+	"description": "Scrollable items for cross-page links.",
+	"keywords": ["rgbc", "cards", "slider"],
+	"category": "storybook",
+	"icon": "images-alt2",
+	"textdomain": "storybook",
+	"attributes": {
+		"initialSlide": {
+			"type": "number",
+			"default": 10
+		},
+		"speed": {
+			"type": "number",
+			"default": 300
+		},
+		"direction": {
+			"type": "string",
+			"default": "horizontal"
+		},
+		"loop": {
+			"type": "boolean",
+			"default": false
+		},
+		"effect": {
+			"type": "string",
+			"default": "slide"
+		},
+		"slidesPerView": {
+			"type": "number",
+			"default": 1
+		},
+		"slidesPerGroup": {
+			"type": "number",
+			"default": 1
+		},
+		"spaceBetween": {
+			"type": "number",
+			"default": 10
+		},
+		"centeredSlides": {
+			"type": "boolean",
+			"default": false
+		},
+		"keyboard": {
+			"type": "boolean",
+			"default": true
+		},
+		"grabCursor": {
+			"type": "boolean",
+			"default": false
+		},
+		"watchOverflow": {
+			"type": "boolean",
+			"default": true
+		},
+		"grid": {
+			"type": "object",
+			"properties": {
+				"rows": {
+					"type": "number"
+				},
+				"fill": {
+					"type": "string"
+				}
+			},
+			"default": {
+				"rows": 1,
+				"fill": "column"
+			}
+		},
+		"autoplay": {
+			"type": "object",
+			"properties": {
+				"enabled": {
+					"type": "boolean"
+				},
+				"delay": {
+					"type": "number"
+				},
+				"disableOnInteraction": {
+					"type": "boolean"
+				},
+				"reverseDirection": {
+					"type": "boolean"
+				},
+				"stopOnLastSlide": {
+					"type": "boolean"
+				},
+				"waitForTransition": {
+					"type": "boolean"
+				},
+				"pauseOnMouseEnter": {
+					"type": "boolean"
+				}
+			},
+			"default": {
+				"enabled": true,
+				"delay": 3000,
+				"disableOnInteraction": true,
+				"reverseDirection": false,
+				"stopOnLastSlide": false,
+				"waitForTransition": true,
+				"pauseOnMouseEnter": false
+			}
+		},
+		"pagination": {
+			"type": "object",
+			"properties": {
+				"enabled": {
+					"type": "number"
+				},
+				"clickable": {
+					"type": "string"
+				},
+				"type": {
+					"type": "string"
+				},
+				"dynamicBullets": {
+					"type": "boolean"
+				},
+				"dynamicMainBullets": {
+					"type": "number"
+				},
+				"hideOnClick": {
+					"type": "boolean"
+				},
+				"progressbarOpposite": {
+					"type": "boolean"
+				}
+			},
+			"default": {
+				"enabled": true,
+				"clickable": true,
+				"type": "bullets",
+				"dynamicBullets": false,
+				"dynamicMainBullets": 1,
+				"hideOnClick": true,
+				"progressbarOpposite": false
+			}
+		},
+		"navigation": {
+			"type": "object",
+			"properties": {
+				"enabled": {
+					"type": "boolean"
+				}
+			},
+			"default": {
+				"enabled": true
+			}
+		},
+		"mousewheel": {
+			"type": "object",
+			"properties": {
+				"enabled": {
+					"type": "boolean"
+				},
+				"forceToAxis": {
+					"type": "boolean"
+				},
+				"releaseOnEdges": {
+					"type": "boolean"
+				},
+				"invert": {
+					"type": "boolean"
+				},
+				"sensitivity": {
+					"type": "number"
+				},
+				"thresholdDelta": {
+					"type": "number"
+				},
+				"thresholdTime": {
+					"type": "number"
+				}
+			},
+			"default": {
+				"enabled": false,
+				"forceToAxis": false,
+				"releaseOnEdges": false,
+				"invert": false,
+				"sensitivity": 1,
+				"thresholdDelta": 0,
+				"thresholdTime": 0
+			}
+		},
+		"scrollbar": {
+			"type": "object",
+			"default": {
+				"enabled": false,
+				"hide": true,
+				"draggable": false,
+				"snapOnRelease": false,
+				"dragSize": "auto"
+			}
+		},
+		"freeMode": {
+			"type": "object",
+			"properties": {
+				"enabled": {
+					"type": "boolean"
+				},
+				"momentum": {
+					"type": "boolean"
+				},
+				"momentumRatio": {
+					"type": "number"
+				},
+				"momentumVelocityRatio": {
+					"type": "number"
+				},
+				"momentumBounce": {
+					"type": "boolean"
+				},
+				"momentumBounceRatio": {
+					"type": "number"
+				},
+				"minimumVelocity": {
+					"type": "number"
+				},
+				"sticky": {
+					"type": "boolean"
+				}
+			},
+			"default": {
+				"enabled": false,
+				"momentum": true,
+				"momentumRatio": 1,
+				"momentumVelocityRatio": 1,
+				"momentumBounce": true,
+				"momentumBounceRatio": 1,
+				"minimumVelocity": 0.02,
+				"sticky": false
+			}
+		},
+		"parallax": {
+			"type": "object",
+			"properties": {
+				"enabled": {
+					"type": "boolean"
+				}
+			},
+			"default": {
+				"enabled": true
+			}
+		},
+		"thumbs": {
+			"type": "object",
+			"properties": {
+				"multipleActiveThumbs": {
+					"type": "boolean"
+				},
+				"autoScrollOffset": {
+					"type": "number"
+				}
+			},
+			"default": {
+				"multipleActiveThumbs": true,
+				"autoScrollOffset": 0
+			}
+		},
+		"virtual": {
+			"type": "object",
+			"properties": {
+				"enabled": {
+					"type": "boolean"
+				},
+				"slides": {
+					"type": "array"
+				},
+				"cache": {
+					"type": "boolean"
+				},
+				"addSlidesBefore": {
+					"type": "number"
+				},
+				"addSlidesAfter": {
+					"type": "number"
+				},
+				"renderExternalUpdate": {
+					"type": "boolean"
+				}
+			},
+			"default": {
+				"enabled": false,
+				"slides": [],
+				"cache": true,
+				"addSlidesBefore": 0,
+				"addSlidesAfter": 0,
+				"renderExternalUpdate": true
+			}
+		},
+		"zoom": {
+			"type": "object",
+			"properties": {
+				"limitToOriginalSize": {
+					"type": "boolean"
+				},
+				"maxRatio": {
+					"type": "number"
+				},
+				"minRatio": {
+					"type": "number"
+				},
+				"toggle": {
+					"type": "boolean"
+				}
+			},
+			"default": {
+				"limitToOriginalSize": false,
+				"maxRatio": 3,
+				"minRatio": 1,
+				"toggle": true
+			}
+		}
+	},
+	"supports": {
+		"multiple": true
+	},
+	"editorScript": "file:index.js",
+	"viewScript": "file:view.js",
+	"editorStyle": "file:editor.css",
+	"viewStyle": "file:view.css",
+	"render": "file:render.php"
+}

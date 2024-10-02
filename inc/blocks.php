@@ -1,21 +1,9 @@
 <?php
-/**
- * Setup Gutenberg Blocks etc.
- *
- */
 
 namespace Storybook\Blocks;
 
-/**
- * Setup Gutenberg Blocks.
- *
- * @return void
- */
-function setup() {
-	add_action( 'init', __NAMESPACE__ . '\\register_styles' );
-}
+defined( 'ABSPATH' ) || exit;
 
-require THEME_PATH . '/build/blocks/components/button/index.php';
-require THEME_PATH . '/build/blocks/custom/link/index.php';
-require THEME_PATH . '/build/blocks/components/toolbar/index.php';
+require GB_SB_PATH . '/build/blocks/components/link/index.php';
+require GB_SB_PATH . '/build/blocks/components/swiper-slider/render.php';
 

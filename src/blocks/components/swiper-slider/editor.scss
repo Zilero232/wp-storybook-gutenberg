@@ -1,0 +1,7 @@
+/**
+ * Block type editor styles definition. They will only be enqueued in the context of the editor.
+ * Note that these styles are loaded *after* common styles, so that
+ * editor-specific styles using the same selectors will take precedence.
+ */
+
+@import './block';

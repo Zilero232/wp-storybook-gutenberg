@@ -11,14 +11,15 @@ define( 'THEME_PATH', get_template_directory() );
 define( 'THEME_URL', get_template_directory_uri() );
 define( 'SRC', get_template_directory_uri() );
 
-// Регистрация категории "storybook"
+// Registration of the "storybook" category
 add_filter('block_categories_all', 'register_custom_block_categories', 10, 2);
+
 function register_custom_block_categories($categories) {
 	return array_merge(
 			array(
 				array(
 						'slug'  => 'storybook',
-						'title' => __('Storybook', 'text-domain'),
+						'title' => __('Storybook', 'storybook'),
 						'icon'  => 'wordpress',  // Slug of a WordPress Dashicon or custom SVG
 				),
 			),

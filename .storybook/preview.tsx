@@ -38,19 +38,6 @@ const globalTypes = {
 			],
 		},
 	},
-	// theme: {
-	// 	description: 'Global color scheme for components.',
-	// 	defaultValue: 'light',
-	// 	toolbar: {
-	// 		title: 'Color Scheme',
-	// 		icon: 'mirror',
-	// 		items: [
-	// 			{ value: 'light', title: 'Light Mode' },
-	// 			{ value: 'dark', title: 'Dark Mode' },
-	// 		],
-	// 		dynamicTitle: true,
-	// 	},
-	// },
 };
 
 const parameters = {
@@ -66,6 +53,7 @@ const parameters = {
 			order: ['Docs', ['Introduction', 'Icons'], 'Components'],
 		},
 	},
+	controls: { expanded: true },
 	docs: {
 		// Flips the order of the description and the primary component story
 		// so the component is always visible before the fold.
